@@ -193,6 +193,7 @@ input:focus {
   position: relative;
   transition-duration: 0.4s;
   overflow: hidden;
+  font-weight: 700;
 }
 
 .effect04::before,
@@ -226,4 +227,7 @@ input:focus {
   letter-spacing: 0.05em;
   -webkit-transform: translateY(0) scale(1, 1);
   transform: translateY(0) scale(1, 1);
+}
+.checklist{
+    font-weight: 700;
 }
