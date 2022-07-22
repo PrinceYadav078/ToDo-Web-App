@@ -13,6 +13,8 @@ const getLocalStoragedata=()=>{
 const Todo = () => {
     const [inputdata, setInputData] = useState("")
     const [items, setItems] = useState(getLocalStoragedata())
+    const [editeditem, setEditeditem]=useState("")
+    const [toggle_edit_btn, setToggle_edit_btn]=useState(false)
 
     useEffect(()=>{
         localStorage.setItem("mytodolist" , JSON.stringify(items))
@@ -22,7 +24,21 @@ const Todo = () => {
     const addItem = () => {
         if (!inputdata) {
             alert("Plz 🙏 give input for adding")
-        } else {
+        } else if(inputdata && toggle_edit_btn){
+            setItems(
+                items.map((curElem) => {
+                    if(curElem.id === editeditem){
+                        return {...curElem, item:inputdata }
+                    }
+                    return curElem
+                })
+            )
+            setInputData("")
+            setEditeditem(null)
+            setToggle_edit_btn(false)
+        } 
+        
+        else {
             const myNewInputData ={
                 id: new Date().getTime().toString(),
                 item:inputdata,
@@ -30,6 +46,16 @@ const Todo = () => {
             setItems([...items, myNewInputData])
             setInputData("")
         }
+    }
+
+    // EDIT ITEMS
+    const editItem=(index)=>{
+        const item_todo_edited=items.find((curElem) => {
+            return curElem.id === index
+        })
+        setInputData(item_todo_edited.item)
+        setEditeditem(index)
+        setToggle_edit_btn(true)
     }
 
     // Delete Items
@@ -62,8 +88,14 @@ const Todo = () => {
                             value={inputdata}
                             onChange={(event) => setInputData(event.target.value)}
                         />
+                        {toggle_edit_btn?(<i className=" far fa-edit add-btn" onClick={addItem}></i>
+                        ) : (<i className=" fa fa-solid fa-plus add-btn" onClick={addItem}></i>
+                        
+                        )}
 
-                        <i className=" fa fa-solid fa-plus add-btn" onClick={addItem}></i>
+                        
+
+                        
                     </div>
 
                     {/* SHOW  all ITEMS */}
@@ -73,7 +105,8 @@ const Todo = () => {
                                 <div className='eachItem' key={curElem.id}>
                                     <h3>{curElem.item}</h3>
                                     <div className='todo-btn'>
-                                        <i className=" far fa-edit add-btn"></i>
+                                        <i className=" far fa-edit add-btn"
+                                        onClick={()=> editItem(curElem.id)}></i>
                                         <i className=" far fa-trash-alt add-btn" 
                                         onClick={() => deleteItem(curElem.id)}></i>
                                     </div>
