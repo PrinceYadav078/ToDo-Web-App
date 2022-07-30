@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Weather-Web-App/static/css/main.c765e930.css",
-    "main.js": "/Weather-Web-App/static/js/main.dbaba55a.js",
-    "index.html": "/Weather-Web-App/index.html",
-    "main.c765e930.css.map": "/Weather-Web-App/static/css/main.c765e930.css.map",
-    "main.dbaba55a.js.map": "/Weather-Web-App/static/js/main.dbaba55a.js.map"
+    "main.css": "/ToDo-Web-App/static/css/main.c765e930.css",
+    "main.js": "/ToDo-Web-App/static/js/main.dbaba55a.js",
+    "index.html": "/ToDo-Web-App/index.html",
+    "main.c765e930.css.map": "/ToDo-Web-App/static/css/main.c765e930.css.map",
+    "main.dbaba55a.js.map": "/ToDo-Web-App/static/js/main.dbaba55a.js.map"
   },
   "entrypoints": [
     "static/css/main.c765e930.css",
